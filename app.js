@@ -14,6 +14,9 @@ import expressMessages from 'express-messages';
 import env from './env';
 
 import routes from './routes/index';
+import articles from './routes/articles';
+import categories from './routes/categories';
+import manage from './routes/manage';
 
 
 // Camo ODM Connection
@@ -92,6 +95,9 @@ app.use(express.static(path.join(__dirname, 'public')));
  * *********** */
 
 app.use('/', routes);
+app.use('/articles', articles);
+app.use('/categories', categories);
+app.use('/manage', manage);
 
 const server = app.listen(env.PORT, () => {
   console.log(`Server is now listening on locahost:${env.PORT}`);
