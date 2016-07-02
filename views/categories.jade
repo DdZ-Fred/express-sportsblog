@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  .spacer
+  .container
+    .row
+    .col-md-10.col-md-offset-1.col-lg-8.col.lg-offset-1
+      h1= title
+      br
+      ul.list-group
+        //- each category, i in categories
+        li.list-group-item
+          a(href='/articles/category/1') Category Title
+        li.list-group-item
+          a(href='/articles/category/2') Category Title
