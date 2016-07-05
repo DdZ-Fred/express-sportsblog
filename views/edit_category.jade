@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  .spacer
+  .container
+    .row
+      .col-md-10.col-md-offset-1.col-lg-10.col-lg-offset-1
+        h1= title
+        form.form(method='post', action='/categories/edit/1')
+          .form-group
+            label(for='title') Title:
+            input.form-control(id='title', type='text', name='title', value='TitleHere')
+          .form-group
+            label(for='description') Description:
+            textarea.form-control(id='description', type='text', name='description') Description Here
+          button.btn.btn-primary(type='submit') Update
+          a.btn.btn-default(href='/manage/categories') Back

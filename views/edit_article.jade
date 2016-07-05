@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  .spacer
+  .container
+    .row
+      .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-1
+        h1= title
+        form.form(method='post', action='/articles/edit/1')
+          .form-group
+            label(for='title') Title:
+            input.form-control(id='title', type='text', name='title', value='TitleHere')
+          .form-group
+            label(for='subtitle') Subtitle:
+            input.form-control(id='subtitle', type='text', name='subtitle', value='SubtitleHere')
+          .form-group
+            label(for='category') Category:
+            select.form-control(id='category', name='category')
+              option(value='1') Category 1
+              option(value='2') Category 2
+              option(value='3') Category 3
+          .form-group
+            label(for='author') Author:
+            input.form-control(id='author', type='text', name='author', value='AuthorHere')
+          .form-group
+            label(for='body') Body:
+            textarea.form-control(id='body', name='body') BodyHere
+          button.btn.btn-primary(type='submit') Update
+          a.btn.btn-default(href='/manage/articles') Back

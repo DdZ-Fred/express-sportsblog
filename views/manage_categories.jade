@@ -5,7 +5,16 @@ block content
   .container
     .row
       .col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-1
-        a(class='btn btn-primary' href='/manage/categories/add') Create Category
+        a.btn.btn-primary(href='/manage/categories/add') Create Category
         h1= title
           small
-            a(href='')
+            a(href='/manage/articles') Manage Articles
+        table.table.table-striped
+          tbody
+            tr
+              th Category Title
+              th
+            tr
+              td Title
+              td
+                a.btn.btn-default(href='/manage/categories/edit/1') Edit
