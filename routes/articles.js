@@ -1,4 +1,4 @@
-import express from 'express';
+const express = require('express');
 const router = express.Router();
 
 /*
@@ -25,4 +25,4 @@ router.get('/category/:category_id', (req, res) => {
   res.render('articles');
 });
 
-export default router;
+module.exports = router;

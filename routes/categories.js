@@ -1,10 +1,16 @@
-import express from 'express';
+const express = require('express');
+const Category = require('../models/Category');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('categories', {
-    title: 'Categories',
+  console.log('[/categories] was requested');
+  Category.find().then((categories) => {
+    console.log(`Categories found: ${categories.length}`);
+    res.render('categories', {
+      title: 'Categories',
+      categories,
+    });
   });
 });
 
-export default router;
+module.exports = router;

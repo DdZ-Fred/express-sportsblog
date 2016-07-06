@@ -1,30 +1,41 @@
-import path from 'path';
-import express from 'express';
-import jade from 'jade';
-import mongodb from 'mongodb';
-import camo from 'camo';
-import morgan from 'morgan';
-import bodyParser from 'body-parser';
-import expressValidator from 'express-validator';
-import cookieParser from 'cookie-parser';
-import session from 'express-session';
+const path = require('path');
+const express = require('express');
+const jade = require('jade');
+const mongodb = require('mongodb');
+const camo = require('camo');
+// import initDb from './data';
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-import flash from 'connect-flash';
-import expressMessages from 'express-messages';
-import env from './env';
+const flash = require('connect-flash');
+const expressMessages = require('express-messages');
+const env = require('./env');
 
-import routes from './routes/index';
-import articles from './routes/articles';
-import categories from './routes/categories';
-import manage from './routes/manage';
+const routes = require('./routes/index');
+const articles = require('./routes/articles');
+const categories = require('./routes/categories');
+const manage = require('./routes/manage');
 
+const Category = require('./models/Category');
 
 // Camo ODM Connection
-const dbUri = 'mongodb://localhost/sportsblog';
-let db;
-camo.connect(dbUri).then((database) => {
-  db = database;
+const dbUri = 'mongodb://localhost:27017/sportsblog';
+let database;
+camo.connect(dbUri).then((db) => {
+  database = db;
+  const tmp = Category.create({
+    title: 'Gibidin',
+    description: 'Gibidin desc here',
+  });
+  console.log(tmp);
+  return tmp.save();
+}).then((c) => {
+  console.log(c);
 });
+
 
 const app = express();
 
