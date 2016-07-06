@@ -14,6 +14,16 @@ class Category extends Document {
     });
   }
 
+  static findById(id) {
+    return this.findOne({ _id: id });
+  }
+
+  static findAll() {
+    return this.find({}, {
+      sort: 'title',
+    });
+  }
+
   static collectionName() {
     return 'categories';
   }

@@ -6,12 +6,17 @@ block content
     .row
       .col-md-10.col-md-offset-1.col-lg-10.col-lg-offset-1
         h1= title
-        form.form(method='post', action='/categories/edit/1')
+        if errors
+          ul.errors
+            each error, i in errors
+              li.alert.alert-danger #{error.msg}
+        form.form(method='post', action='/categories/edit/#{category._id}')
           .form-group
             label(for='title') Title:
-            input.form-control(id='title', type='text', name='title', value='TitleHere')
+            input.form-control(id='title', type='text', name='title', value='#{category.title}')
           .form-group
             label(for='description') Description:
-            textarea.form-control(id='description', type='text', name='description') Description Here
+            textarea.form-control(id='description', type='text', name='description') #{category.description}
           button.btn.btn-primary(type='submit') Update
           a.btn.btn-default(href='/manage/categories') Back
+          a.btn.btn-danger.category-delete.pull-right(data-category-id='#{category._id.toString()}', data-csrf='#{csrfToken}') Delete

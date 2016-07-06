@@ -8,8 +8,6 @@ block content
       h1= title
       br
       ul.list-group
-        //- each category, i in categories
-        li.list-group-item
-          a(href='/articles/category/1') Category Title
-        li.list-group-item
-          a(href='/articles/category/2') Category Title
+        each category, i in categories
+          li.list-group-item
+            a(href='/articles/category/#{category._id}') #{category.title}

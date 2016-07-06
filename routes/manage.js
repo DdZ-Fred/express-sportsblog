@@ -1,9 +1,11 @@
 const express = require('express');
+const Category = require('../models/Category');
+const csrf = require('csurf');
 const router = express.Router();
-
-/*
-  ARTICLES
- */
+const csrfProtection = csrf({ cookie: true });
+/* **********
+ *  ARTICLES
+ * ********** */
 
 router.get('/articles', (req, res) => {
   res.render('manage_articles', {
@@ -24,13 +26,16 @@ router.get('/articles/edit/:article_id', ({ params }, res) => {
 });
 
 
-/*
-  CATEGORIES
- */
+/* ************
+ *  CATEGORIES
+ * *********** */
 
 router.get('/categories', (req, res) => {
-  res.render('manage_categories', {
-    title: 'Manage Categories',
+  Category.findAll().then((categories) => {
+    res.render('manage_categories', {
+      title: 'Manage Categories',
+      categories,
+    });
   });
 });
 
@@ -40,9 +45,13 @@ router.get('/categories/add', (req, res) => {
   });
 });
 
-router.get('/categories/edit/:category_id', ({ params }, res) => {
-  res.render('edit_category', {
-    title: 'Edit Category',
+router.get('/categories/edit/:category_id', csrfProtection, (req, res) => {
+  Category.findById(req.params.category_id).then((category) => {
+    res.render('edit_category', {
+      title: 'Edit Category',
+      category,
+      csrfToken: req.csrfToken(),
+    });
   });
 });
 

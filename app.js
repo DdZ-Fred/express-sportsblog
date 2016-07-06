@@ -19,7 +19,6 @@ const articles = require('./routes/articles');
 const categories = require('./routes/categories');
 const manage = require('./routes/manage');
 
-const Category = require('./models/Category');
 
 // Camo ODM Connection
 const dbUri = 'mongodb://localhost:27017/sportsblog';

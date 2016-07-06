@@ -31,6 +31,7 @@ module.exports = function initDb() {
     if (cats === 0) {
       return recursiveCatCreate(i);
     }
+    console.log(`Categories found: ${cats}`);
     return null;
   });
   // Default Articles check
