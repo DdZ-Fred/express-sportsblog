@@ -1,7 +1,0 @@
-{
-  "presets": [
-    "camo",
-    "es2015",
-    "stage-2"
-  ]
-}

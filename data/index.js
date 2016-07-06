@@ -5,9 +5,9 @@ const Category = require('../models/Category');
 
 let i = 0;
 
-function test(j) {
+function recursiveCatCreate(j) {
   if (j < categories.length) {
-    console.log(`Index j = ${j} inside aray length`);
+    console.log(`Index j = ${j} inside array length`);
     const tmp = Category.create({
       title: categories[j].title,
       description: categories[j].description,
@@ -16,7 +16,7 @@ function test(j) {
       console.log(prev);
       i++;
       console.log(`Counter i = ${i}`);
-      test(i);
+      recursiveCatCreate(i);
     });
   }
   return null;
@@ -29,8 +29,7 @@ module.exports = function initDb() {
   // Default Categories check
   Category.count().then((cats) => {
     if (cats === 0) {
-      console.log(i);
-      return test(i);
+      return recursiveCatCreate(i);
     }
     return null;
   });

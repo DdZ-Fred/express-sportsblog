@@ -3,7 +3,7 @@ const express = require('express');
 const jade = require('jade');
 const mongodb = require('mongodb');
 const camo = require('camo');
-// import initDb from './data';
+const initDb = require('./data');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
@@ -26,14 +26,7 @@ const dbUri = 'mongodb://localhost:27017/sportsblog';
 let database;
 camo.connect(dbUri).then((db) => {
   database = db;
-  const tmp = Category.create({
-    title: 'Gibidin',
-    description: 'Gibidin desc here',
-  });
-  console.log(tmp);
-  return tmp.save();
-}).then((c) => {
-  console.log(c);
+  initDb();
 });
 
 
