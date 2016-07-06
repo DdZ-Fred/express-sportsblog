@@ -35,6 +35,7 @@ const app = express();
 app.set('views', './views');
 app.set('view engine', 'jade');
 
+app.locals.moment = require('moment');
 
 /* **************** *
       MIDDLEWARES

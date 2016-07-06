@@ -16,9 +16,8 @@ block content
           .form-group
             label(for='category') Category:
             select.form-control(id='category', name='category')
-              option(value='1') Category 1
-              option(value='2') Category 2
-              option(value='3') Category 3
+              each category, i in categories
+                option(value='#{category.title}') #{category.title}
           .form-group
             label(for='author') Author:
             input.form-control(id='author', type='text', name='author')

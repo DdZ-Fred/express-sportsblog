@@ -1,7 +1,9 @@
 const express = require('express');
 const Category = require('../models/Category');
+const csrf = require('csurf');
 const addEditCategorySchema = require('../validation/add_edit_category');
 const router = express.Router();
+const csrfProtection = csrf({ cookie: true });
 
 router.get('/', (req, res) => {
   console.log('[/categories] was requested');
@@ -63,7 +65,7 @@ router.post('/edit/:id', (req, res) => {
   }
 });
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/delete/:id', csrfProtection, (req, res) => {
   const query = {
     _id: req.params.id,
   };

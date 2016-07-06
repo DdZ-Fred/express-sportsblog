@@ -1,4 +1,5 @@
 const Document = require('camo').Document;
+const Comment = require('./Comment');
 
 class Article extends Document {
 
@@ -9,7 +10,28 @@ class Article extends Document {
 
     this.schema({
       title: String,
+      subtitle: String,
+      category: String,
       body: String,
+      author: String,
+      created_at: {
+        type: Date,
+        default: new Date(),
+      },
+      comments: [Comment],
+    });
+  }
+
+  static findById(id) {
+    return this.findOne({ _id: id });
+  }
+
+  static findAll() {
+    return this.find({}, {
+      sort: [
+        'title',
+        'created_at',
+      ],
     });
   }
 

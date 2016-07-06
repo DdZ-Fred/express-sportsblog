@@ -1,5 +1,6 @@
 const express = require('express');
 const Category = require('../models/Category');
+const Article = require('../models/Article');
 const csrf = require('csurf');
 const router = express.Router();
 const csrfProtection = csrf({ cookie: true });
@@ -8,20 +9,29 @@ const csrfProtection = csrf({ cookie: true });
  * ********** */
 
 router.get('/articles', (req, res) => {
-  res.render('manage_articles', {
-    title: 'Manage Articles',
+  Article.findAll().then((articles) => {
+    res.render('manage_articles', {
+      title: 'Manage Articles',
+      articles,
+    });
   });
 });
 
 router.get('/articles/add', (req, res) => {
-  res.render('add_article', {
-    title: 'Add Article',
+  Category.findAll().then((categories) => {
+    res.render('add_article', {
+      title: 'Add Article',
+      categories,
+    });
   });
 });
 
-router.get('/articles/edit/:article_id', ({ params }, res) => {
-  res.render('edit_article', {
-    title: 'Edit Article',
+router.get('/articles/edit/:id', ({ params }, res) => {
+  Article.findById(params.id).then((article) => {
+    res.render('edit_article', {
+      title: 'Edit Article',
+      article,
+    });
   });
 });
 

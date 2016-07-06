@@ -1,10 +1,14 @@
 const express = require('express');
+const Article = require('../models/Article');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('index', {
-    title: 'Home',
+  Article.findAll().then((articles) => {
+    res.render('index', {
+      title: 'Home',
+      articles,
+    });
   });
 });
 

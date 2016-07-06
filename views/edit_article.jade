@@ -9,10 +9,10 @@ block content
         form.form(method='post', action='/articles/edit/1')
           .form-group
             label(for='title') Title:
-            input.form-control(id='title', type='text', name='title', value='TitleHere')
+            input.form-control(id='title', type='text', name='title', value='#{article.title}')
           .form-group
             label(for='subtitle') Subtitle:
-            input.form-control(id='subtitle', type='text', name='subtitle', value='SubtitleHere')
+            input.form-control(id='subtitle', type='text', name='subtitle', value='#{article.subtitle}')
           .form-group
             label(for='category') Category:
             select.form-control(id='category', name='category')
@@ -21,9 +21,9 @@ block content
               option(value='3') Category 3
           .form-group
             label(for='author') Author:
-            input.form-control(id='author', type='text', name='author', value='AuthorHere')
+            input.form-control(id='author', type='text', name='author', value='#{article.author}')
           .form-group
             label(for='body') Body:
-            textarea.form-control(id='body', name='body') BodyHere
+            textarea.form-control(id='body', name='body') #{article.body}
           button.btn.btn-primary(type='submit') Update
           a.btn.btn-default(href='/manage/articles') Back
