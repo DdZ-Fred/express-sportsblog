@@ -5,7 +5,7 @@ module.exports = {
   },
   subtitle: {
     notEmpty: true,
-    errorMessage: 'A Subtitle is required',
+    errorMessage: 'A subtitle is required',
   },
   category: {
     notEmpty: true,
@@ -17,5 +17,6 @@ module.exports = {
   },
   body: {
     notEmpty: true,
+    errorMessage: 'A body is required',
   },
 };

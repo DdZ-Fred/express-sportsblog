@@ -27,10 +27,16 @@ router.get('/articles/add', (req, res) => {
 });
 
 router.get('/articles/edit/:id', ({ params }, res) => {
-  Article.findById(params.id).then((article) => {
+  let article;
+
+  Article.findById(params.id).then((art) => {
+    article = art;
+    return Category.findAll();
+  }).then((categories) => {
     res.render('edit_article', {
       title: 'Edit Article',
       article,
+      categories,
     });
   });
 });

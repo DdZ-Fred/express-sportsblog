@@ -18,7 +18,10 @@ class Article extends Document {
         type: Date,
         default: new Date(),
       },
-      comments: [Comment],
+      comments: {
+        type: [Comment],
+        default: [],
+      },
     });
   }
 
