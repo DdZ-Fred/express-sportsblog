@@ -26,10 +26,10 @@ router.get('/articles/add', (req, res) => {
   });
 });
 
-router.get('/articles/edit/:id', ({ params }, res) => {
+router.get('/articles/edit/:id', csrfProtection, (req, res) => {
   let article;
 
-  Article.findById(params.id).then((art) => {
+  Article.findById(req.params.id).then((art) => {
     article = art;
     return Category.findAll();
   }).then((categories) => {
@@ -37,6 +37,7 @@ router.get('/articles/edit/:id', ({ params }, res) => {
       title: 'Edit Article',
       article,
       categories,
+      csrfToken: req.csrfToken(),
     });
   });
 });

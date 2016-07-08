@@ -31,3 +31,4 @@ block content
             textarea.form-control(id='body', name='body') #{article.body}
           button.btn.btn-primary(type='submit') Update
           a.btn.btn-default(href='/manage/articles') Back
+          a.btn.btn-danger.article-delete.pull-right(data-article-id='#{article._id}', data-csrf='#{csrfToken}') Delete

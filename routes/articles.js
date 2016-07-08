@@ -1,8 +1,10 @@
 const express = require('express');
+const csrf = require('csurf');
 const Category = require('../models/Category');
 const Article = require('../models/Article');
 const addEditArticleSchema = require('../validation/add_edit_article.js');
 const router = express.Router();
+const csrfProtection = csrf({ cookie: true });
 
 /*
   Show All Articles
@@ -98,6 +100,15 @@ router.post('/edit/:id', (req, res) => {
       res.redirect('/manage/articles');
     });
   }
+});
+
+router.delete('/delete/:id', csrfProtection, ({ params }, res) => {
+  const query = {
+    _id: params.id,
+  };
+  Article.deleteOne(query).then((numDeleted) => {
+    res.status(204).send();
+  });
 });
 
 module.exports = router;

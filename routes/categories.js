@@ -65,9 +65,9 @@ router.post('/edit/:id', (req, res) => {
   }
 });
 
-router.delete('/delete/:id', csrfProtection, (req, res) => {
+router.delete('/delete/:id', csrfProtection, ({ params }, res) => {
   const query = {
-    _id: req.params.id,
+    _id: params.id,
   };
   Category.deleteOne(query).then((numDeleted) => {
     console.log(`Category deleted: ${numDeleted}`);
