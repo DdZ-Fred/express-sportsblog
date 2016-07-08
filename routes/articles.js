@@ -34,8 +34,17 @@ router.get('/show/:id', ({ params }, res) => {
 /*
   Show Articles from particular category
  */
-router.get('/category/:category_id', (req, res) => {
-  res.render('articles');
+router.get('/category/:categoryId', ({ params }, res) => {
+  let categoryTitle;
+  Category.findById(params.categoryId).then((cat) => {
+    categoryTitle = cat.title;
+    return Article.findAllByCategory(params.categoryId);
+  }).then((articles) => {
+    res.render('articles', {
+      title: `${categoryTitle}`,
+      articles,
+    });
+  });
 });
 
 

@@ -29,6 +29,17 @@ class Article extends Document {
     return this.findOne({ _id: id });
   }
 
+  static findAllByCategory(categoryId) {
+    return this.find({
+      category: categoryId,
+    }, {
+      sort: [
+        'title',
+        'created_at',
+      ],
+    });
+  }
+
   static findAll() {
     return this.find({}, {
       sort: [
